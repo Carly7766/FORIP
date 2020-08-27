@@ -31,7 +31,7 @@ package FloatingObject{
 		PointCreatePositions(ref chunk : CellChunk) void
 	}
 
-	class FloatingObjectContainer {
+	class CellChunkContainer {
 		Chunks : List<CellGroup>
 
 		AddCellGroup(chunk : CellChunk) : void
@@ -67,12 +67,12 @@ FloatingObjectGenerator ..> GenerateSetting
 FloatingObjectGenerator --> CellChunkCreator
 FloatingObjectGenerator --> FloatingObjectCreatePointer
 FloatingObjectGenerator --> FloatingObjectCreator
-FloatingObjectGenerator --> FloatingObjectContainer
+FloatingObjectGenerator --> CellChunkContainer
 
 note bottom of CellChunkCreator : 1. 受け取ったチャンク座標のCellChunk生成
 note bottom of FloatingObjectCreatePointer : 2. チャンク内のCell群に生成場所だけ記述
 note bottom of FloatingObjectCreator : 3. 実際にオブジェクトを生成
-note bottom of FloatingObjectContainer : 4. ここに入れといてあとで消す時に使う
+note bottom of CellChunkContainer : 4. ここに入れといてあとで消す時に使う
 
 
 @enduml

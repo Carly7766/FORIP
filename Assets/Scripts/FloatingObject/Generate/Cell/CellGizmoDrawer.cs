@@ -3,11 +3,11 @@ using UnityEngine;
 public class CellGizmoDrawer : MonoBehaviour
 {
 #if UNITY_IOS
-	private FloatingObjectContainer container;
+	private CellChunkContainer container;
 
 	private void Awake()
 	{
-		container = Locator<FloatingObjectContainer>.Resolve();
+		container = Locator<CellChunkContainer>.Resolve();
 	}
 
 	private void OnDrawGizmos()

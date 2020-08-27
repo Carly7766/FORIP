@@ -5,17 +5,15 @@ public class FloatingObjectGenerator
 	private CellInitializer cellInitializer;
 	private FloatingObjectCreatePointer floatingObjectPointer;
 	private FloatingObjectCreator floatingObjectCreator;
-	private FloatingObjectContainer floatingObjectContainer;
+	private CellChunkContainer CellChunkContainer;
 
 	public FloatingObjectGenerator()
 	{
 		cellInitializer = new CellInitializer();
 		floatingObjectPointer = new FloatingObjectCreatePointer();
 		floatingObjectCreator = new FloatingObjectCreator();
-		floatingObjectContainer = new FloatingObjectContainer();
 
-		Locator<FloatingObjectContainer>.Bind(floatingObjectContainer);
-		Locator<FloatingObjectContainer>.Bind(floatingObjectContainer);
+		CellChunkContainer = Locator<CellChunkContainer>.Resolve();
 	}
 
 	public void Generate(Vector2Int generateChunkPosition)
@@ -25,6 +23,6 @@ public class FloatingObjectGenerator
 		floatingObjectPointer.SetCreatePoint(ref cellChunk);
 		floatingObjectCreator.Create(ref cellChunk);
 
-		floatingObjectContainer.AddCellGroup(cellChunk);
+		CellChunkContainer.AddCellGroup(cellChunk);
 	}
 }

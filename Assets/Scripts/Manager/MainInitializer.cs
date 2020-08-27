@@ -11,9 +11,11 @@ public class MainInitializer : MonoBehaviour
 
 
 		Locator<GenerateSetting>.Bind(generateSetting);
+		Locator<CellChunkContainer>.Bind(new CellChunkContainer());
 
 		var floatingObjectGenerator = new FloatingObjectGenerator();
 		Locator<FloatingObjectGenerator>.Bind(floatingObjectGenerator);
+
 
 		floatingObjectGenerator.Generate(Vector2Int.zero);
 	}

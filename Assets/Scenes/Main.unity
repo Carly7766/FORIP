@@ -343,7 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1777f68c6e24751867652a7b1c1381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  borderCellCountY: 0
 --- !u!1 &560801154
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +973,7 @@ MonoBehaviour:
   - {fileID: 4500833272845342903, guid: 983da1aab73034ca7987a7c74dade0e3, type: 3}
   - {fileID: 1457695085398329560, guid: bc6074fa9b65a470da7aae6cbe85f610, type: 3}
   - {fileID: 1226161016688965937, guid: 1d377f063e5214dd3879013a61bb6e8c, type: 3}
+  generateBorderCellY: 8
 --- !u!1 &985639961
 GameObject:
   m_ObjectHideFlags: 0
