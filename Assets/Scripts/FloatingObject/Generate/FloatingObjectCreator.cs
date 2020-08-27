@@ -18,6 +18,7 @@ public class FloatingObjectCreator
 		{
 			var floatingObject = GameObject.Instantiate(generateSetting.prefabs[Random.Range(0, generateSetting.prefabs.Length)], cell.floatingObject.position, Quaternion.Euler(0, 0, Random.Range(0.0f, 360.0f)));
 			floatingObject.transform.localScale = new Vector2(cell.floatingObject.size, cell.floatingObject.size);
+			cell.floatingObject.gameObject = floatingObject;
 		}
 	}
 }

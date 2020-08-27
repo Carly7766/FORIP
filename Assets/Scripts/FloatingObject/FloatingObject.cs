@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FloatingObject
 {
+	public GameObject gameObject;
 	public Vector2 position;
 	public float size;
 
@@ -9,5 +10,10 @@ public class FloatingObject
 	{
 		this.position = position;
 		this.size = size;
+	}
+
+	public void DestroyFloatingObject()
+	{
+		GameObject.Destroy(gameObject);
 	}
 }

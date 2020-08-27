@@ -1,6 +1,5 @@
 using UnityEngine;
 using UniRx;
-using UniRx.Triggers;
 
 public class PlayerBorderMonitor : MonoBehaviour
 {
@@ -17,29 +16,36 @@ public class PlayerBorderMonitor : MonoBehaviour
 
 		var transform = GetComponent<Transform>();
 
-		transform
-		.ObserveEveryValueChanged(t => t.position)
+
+		var borderTopExceededObservable = transform.ObserveEveryValueChanged(t => t.position).Where(playerPosition => CheckExceededBorderTop(playerPosition));
+
+
+		var deleteTopStream = borderTopExceededObservable
 		.Subscribe(playerPosition =>
 		{
-			var isExceededBorderTop = CheckBorderTop(playerPosition);
-			if (isExceededBorderTop)
+			var deleteChunkPosition = currentCellChunkPosition + new Vector2Int(0, -2);
+			if (cellChunkContainer.CheckCellGroupExist(deleteChunkPosition))
 			{
-				var generateChunkPosition = currentCellChunkPosition + new Vector2Int(0, 1);
-				var isExistCellChunkTop = cellChunkContainer.CheckCellGroupExist(generateChunkPosition);
-				if (!isExistCellChunkTop)
-				{
-					floatingObjectGenerator.Generate(generateChunkPosition);
+				cellChunkContainer.DeleteCellGroup(deleteChunkPosition);
+			}
+		});
 
-					currentCellChunkPosition += new Vector2Int(0, 1);
-				}
+		var generateTopStream = borderTopExceededObservable
+		.Subscribe(playerPosition =>
+		{
+			var generateChunkPosition = currentCellChunkPosition + new Vector2Int(0, 1);
+			if (!cellChunkContainer.CheckCellGroupExist(generateChunkPosition))
+			{
+				floatingObjectGenerator.Generate(generateChunkPosition);
+
+				currentCellChunkPosition += new Vector2Int(0, 1);
 			}
 		});
 	}
 
-	private bool CheckBorderTop(Vector2 playerPosition)
+	private bool CheckExceededBorderTop(Vector2 playerPosition)
 	{
 		var borderPositionY = generateSetting.cellSize * (generateSetting.generateBorderCellY - 1);
-		Debug.Log($"{playerPosition}, {borderPositionY + ((float)currentCellChunkPosition.y * generateSetting.cellSize)}");
 		return playerPosition.y > borderPositionY + ((float)currentCellChunkPosition.y * generateSetting.cellHeight * generateSetting.cellSize);
 	}
 }

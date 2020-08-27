@@ -14,4 +14,10 @@ public class Cell
 		this.min = min;
 		this.max = max;
 	}
+
+	public void DestroyCell()
+	{
+		floatingObject.DestroyFloatingObject();
+		floatingObject = null;
+	}
 }

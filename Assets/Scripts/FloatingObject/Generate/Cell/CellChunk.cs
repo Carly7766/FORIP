@@ -11,4 +11,13 @@ public class CellChunk
 		this.cells = cells;
 		this.position = position;
 	}
+
+	public void DestroyChunk()
+	{
+		foreach (var cell in cells)
+		{
+			cell.DestroyCell();
+		}
+		cells = null;
+	}
 }

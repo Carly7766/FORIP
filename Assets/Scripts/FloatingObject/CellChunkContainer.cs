@@ -15,6 +15,7 @@ public class CellChunkContainer
 	public void DeleteCellGroup(Vector2Int chunkPosition)
 	{
 		var objectToDelete = CellGroup.Single(chunk => chunk.position == chunkPosition);
+		objectToDelete.DestroyChunk();
 		CellGroup.Remove(objectToDelete);
 	}
 
