@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
@@ -7,27 +8,22 @@ public class PlayerMover : MonoBehaviour
 	private IInputProvider inputProvider;
 	private Rigidbody2D rigidbody;
 
-	private void Start()
+	private int jumpCount = 1;
+
+	public IObservable<Vector2> onMoveStream;
+
+	private void Awake()
 	{
 		inputProvider = Locator<IInputProvider>.Resolve();
 		rigidbody = GetComponent<Rigidbody2D>();
 
-		var onDraggedStream = inputProvider.onStartDragStream
+		onMoveStream = inputProvider.onStartDragStream
 		.Zip(inputProvider.onEndDragStream, (startPos, endPos) => startPos - endPos)
-		.WithLatestFrom(this.FixedUpdateAsObservable(), (diff, _) => diff)
-		.Subscribe(diff =>
+		.WithLatestFrom(this.FixedUpdateAsObservable(), (diff, _) => diff);
+
+		onMoveStream.Subscribe(diff =>
 		{
 			rigidbody.AddForce(diff * 40);
-			rigidbody.simulated = true;
-		});
-
-
-		this.OnCollisionEnter2DAsObservable()
-		.Where(col => col.gameObject.CompareTag("Planet"))
-		.Subscribe(col =>
-		{
-			rigidbody.velocity = Vector2.zero;
-			rigidbody.simulated = false;
 		});
 	}
 }

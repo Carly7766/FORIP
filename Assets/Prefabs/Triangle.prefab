@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1226161016688965902}
   - component: {fileID: 1226161016688965903}
   - component: {fileID: 1226161016688965939}
+  - component: {fileID: 405433994410631374}
+  - component: {fileID: 6748856535476116706}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Planet
@@ -149,7 +151,7 @@ MonoBehaviour:
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
-  m_SelfShadows: 0
+  m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
   - {x: -0.5, y: -0.39375, z: 0}
@@ -158,3 +160,33 @@ MonoBehaviour:
   m_ShapePathHash: 1396202047
   m_Mesh: {fileID: 0}
   m_InstanceId: 17146
+--- !u!255 &405433994410631374
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226161016688965937}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_DampingRatio: 1
+  m_Frequency: 5
+--- !u!114 &6748856535476116706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226161016688965937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9369009c2068b453fabd3fed2bc25d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
