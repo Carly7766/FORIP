@@ -1,0 +1,82 @@
+@startuml
+
+package Player {
+	class PlayerBorderMonitor {
+		currentCellChunkPosition : Vector2Int
+
+		+ 移動を監視()
+	}
+}
+
+package FloatingObject {
+	class FloatingObject {
+		position : Vector2
+		size : float
+		その他なにかあれば値を持ったり
+	}
+}
+
+package FloatingObject.Generate{
+	class GenerateSetting {
+		cellScale : float
+		cellWidth : int
+		cellHeight : int
+	}
+
+	class FloatingObjectGenerator {
+		Generate(chunkPosition : CellChunk) : 今後別の型になるかも
+	}
+
+	class CellInitializer {
+		Initiialize(Vector2Int) : Cell[,]
+	}
+
+	class CellChunkCreator {
+		Create(chunkPosition : Vector2Int) : CellChunk
+	}
+
+	class FloatingObjectCreator {
+		Create(chunk : CellChunk) : void
+	}
+
+	class FloatingObjectCreatePointer {
+		PointCreatePositions(ref chunk : CellChunk) void
+	}
+
+	class CellChunkContainer {
+		Chunks : List<CellGroup>
+
+		AddCellGroup(chunk : CellChunk) : void
+		DeleteGroup(chunk : CellChunk) : void
+	}
+
+	class Cell {
+		min : Vector2
+		max : Vector2
+		center : Vector2
+		size : float
+	}
+
+	class CellChunk {
+		cells : Cell[,]
+		x : int
+		y : int
+	}
+}
+
+PlayerBorderMonitor --> FloatingObjectGenerator
+
+Cell -> FloatingObject
+CellChunk "1" -> "1..*" Cell
+
+FloatingObjectGenerator --> CellInitializer
+FloatingObjectGenerator --> CellChunkCreator
+FloatingObjectGenerator --> FloatingObjectCreatePointer
+FloatingObjectGenerator --> FloatingObjectCreator
+FloatingObjectGenerator --> CellChunkContainer
+
+CellInitializer ..> GenerateSetting
+CellChunkCreator ..> GenerateSetting
+FloatingObjectCreatePointer ..> GenerateSetting
+
+@enduml

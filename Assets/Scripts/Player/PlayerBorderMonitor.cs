@@ -1,18 +1,17 @@
 using UnityEngine;
 using UniRx;
+using Zenject;
 
 public class PlayerBorderMonitor : MonoBehaviour
 {
 	private Vector2Int currentCellChunkPosition = new Vector2Int(0, 0);
-	private GenerateSetting generateSetting;
-	private FloatingObjectGenerator floatingObjectGenerator;
-	private CellChunkContainer cellChunkContainer;
+
+	[Inject] private GenerateSetting generateSetting;
+	[Inject] private FloatingObjectGenerator floatingObjectGenerator;
+	[Inject] private CellChunkContainer cellChunkContainer;
 
 	private void Awake()
 	{
-		generateSetting = Locator<GenerateSetting>.Resolve();
-		floatingObjectGenerator = Locator<FloatingObjectGenerator>.Resolve();
-		cellChunkContainer = Locator<CellChunkContainer>.Resolve();
 
 		var transform = GetComponent<Transform>();
 

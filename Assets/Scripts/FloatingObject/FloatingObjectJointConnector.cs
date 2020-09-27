@@ -11,11 +11,13 @@ public class FloatingObjectJointConnector : MonoBehaviour
 
 	public void Connect(Rigidbody2D playerRigidbody)
 	{
+		fixedJoint.enabled = true;
 		fixedJoint.connectedBody = playerRigidbody;
 	}
 
 	public void DeConnect()
 	{
 		fixedJoint.connectedBody = null;
+		fixedJoint.enabled = false;
 	}
 }

@@ -7,8 +7,9 @@ public class InputProvider : IInputProvider
 	public IObservable<Vector2> onStartDragStream { get; private set; }
 	public IObservable<Vector2> onDragStream { get; private set; }
 	public IObservable<Vector2> onEndDragStream { get; private set; }
+	public Camera mainCamera { get; set; }
 
-	private Camera mainCamera;
+	// public Camera mainCamera;
 
 	public InputProvider()
 	{

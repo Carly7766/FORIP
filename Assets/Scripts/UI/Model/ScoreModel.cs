@@ -8,7 +8,7 @@ public sealed class ScoreModel : MonoBehaviour
 
 	[SerializeField]
 	private Transform playerTransform;
-	private float playerMaxY;
+	public static float playerMaxY;
 	[SerializeField]
 	private int ScoreRate;
 

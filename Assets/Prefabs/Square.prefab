@@ -166,7 +166,7 @@ FixedJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457695085398329560}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
@@ -175,8 +175,8 @@ FixedJoint2D:
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_DampingRatio: 1
-  m_Frequency: 5
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!114 &8645706357368738903
 MonoBehaviour:
   m_ObjectHideFlags: 0

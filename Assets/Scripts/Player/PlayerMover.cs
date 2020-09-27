@@ -1,29 +1,37 @@
-using System;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using Zenject;
 
 public class PlayerMover : MonoBehaviour
 {
+	[Inject]
 	private IInputProvider inputProvider;
 	private Rigidbody2D rigidbody;
 
-	private int jumpCount = 1;
-
-	public IObservable<Vector2> onMoveStream;
+	public float jumpPower { get; private set; } = 50;
+	private int jumpCount = 2;
+	public bool isGround { get; private set; } = true;
 
 	private void Awake()
 	{
-		inputProvider = Locator<IInputProvider>.Resolve();
 		rigidbody = GetComponent<Rigidbody2D>();
 
-		onMoveStream = inputProvider.onStartDragStream
+		inputProvider.onStartDragStream
 		.Zip(inputProvider.onEndDragStream, (startPos, endPos) => startPos - endPos)
-		.WithLatestFrom(this.FixedUpdateAsObservable(), (diff, _) => diff);
-
-		onMoveStream.Subscribe(diff =>
+		.WithLatestFrom(this.FixedUpdateAsObservable(), (diff, _) => diff * jumpPower)
+		.Where(_ => jumpCount > 0)
+		.Subscribe(force =>
 		{
-			rigidbody.AddForce(diff * 40);
+			rigidbody.AddForce(force);
+			jumpCount--;
+			isGround = false;
+		});
+
+		this.OnCollisionEnter2DAsObservable().Subscribe(_ =>
+		{
+			isGround = true;
+			jumpCount = 2;
 		});
 	}
 }

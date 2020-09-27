@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af86a034248944d3b863783afa06aa3, type: 3}
+  m_Name: GenerateSetting
+  m_EditorClassIdentifier: 
+  cellSize: 8
+  cellWidth: 10
+  cellHeight: 10
+  prefabs:
+  - {fileID: 4500833272845342903, guid: 983da1aab73034ca7987a7c74dade0e3, type: 3}
+  - {fileID: 1457695085398329560, guid: bc6074fa9b65a470da7aae6cbe85f610, type: 3}
+  - {fileID: 1226161016688965937, guid: 1d377f063e5214dd3879013a61bb6e8c, type: 3}
+  prefabMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  generateBorderCellY: 8

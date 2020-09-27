@@ -1,18 +1,17 @@
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using Zenject;
 
 public class PlayerClimber : MonoBehaviour
 {
-	private IInputProvider inputProvider;
+	[Inject] private IInputProvider inputProvider;
 	private Rigidbody2D rigidbody;
 	FloatingObjectJointConnector collisionJointConnector;
 
 	private void Awake()
 	{
-		inputProvider = Locator<IInputProvider>.Resolve();
 		rigidbody = GetComponent<Rigidbody2D>();
-
 
 		this.OnCollisionEnter2DAsObservable()
 		.Where(col => col.gameObject.CompareTag("Planet"))
